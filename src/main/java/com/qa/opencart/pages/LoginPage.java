@@ -2,6 +2,7 @@ package com.qa.opencart.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.qa.opencart.utils.AppConstantsUtil;
 import com.qa.opencart.utils.ElementUtil;
@@ -18,6 +19,7 @@ public class LoginPage {
 	private By password = By.id("input-password");
 	private By loginBtn = By.xpath("//input[@value='Login']");
 	private By forgotPwdLink = By.linkText("Forgotten Password");
+	private By registerLink = By.linkText("Register");
 	
 	//2. constructor of the page class
 	
@@ -46,11 +48,27 @@ public class LoginPage {
 	
 	public AccountsPage doLogin(String un, String pwd) { 		// return type is AccountsPage because after login it will navigate to Account page
 		System.out.println("Login with: " + un + " : " + pwd);
-		eleUtil.waitForElementVisible(emailID, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
-		eleUtil.doSendKeys(password, pwd);
+		//eleUtil.waitForElementVisible(emailID, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
+		//eleUtil.doSendKeys(password, pwd);
+		driver.manage().deleteAllCookies();
+		// Wait and Clear Username
+	    WebElement email = eleUtil.waitForElementVisible(emailID, TimeUtil.DEFAULT_TIME_OUT);
+	    email.clear();
+	    email.sendKeys(un);
+
+	    // Wait and Clear Password
+	    WebElement pass = eleUtil.waitForElementVisible(password, TimeUtil.DEFAULT_TIME_OUT);
+	    pass.clear();
+	    pass.sendKeys(pwd);
 		eleUtil.doClick(loginBtn);
 		
 		return new AccountsPage(driver); // after login, it will navigate to Account page Chaining concept
+	}
+	
+	
+	public RegPage navigateToRegisterPage() {
+		eleUtil.doClick(registerLink);
+		return new RegPage(driver);
 	}
  
 

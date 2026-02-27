@@ -14,6 +14,9 @@ public class AppConstantsUtil {
 	public static final String ACCOUNT_PAGE_URL_FRACTION = "route=account/account";
 	//public static final List<String> EXPECTED_ACCOUNT_PAGE_SECTION_HEADERS_LIST = Arrays.asList("My Account", "My Orders", "My Affiliate Account", "Newsletter");
 	public static final Collection<?> EXPECTED_ACCOUNT_PAGE_SECTION_HEADERS_LIST = Arrays.asList("My Account", "My Orders", "My Affiliate Account", "Newsletter");
+	public static final String SEARCH_PAGE_TITLE = "Search - ";
+	public static final String ACCOUNT_REGISTER_SUCCESS_MESSAGE = "Your Account Has Been Created!";
+	public static final String REGISTER_SHEET_NAME = "Sheet1";
 	
 	
 

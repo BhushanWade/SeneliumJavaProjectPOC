@@ -57,6 +57,19 @@ public class AccountsPage {
 		}
 		return secHeaderValList;
 	}
+
+	public ResultsPage performSearch(String productName) {
+		System.out.println("Product search for : "+productName);
+		if(isSearchExist()) {
+			eleUtil.doSendKeys(search, productName);
+			eleUtil.doClick(searchIcon);
+			
+			return new ResultsPage(driver);
+		}
+		
+		return null;
+		
+	}
 	
 	
 

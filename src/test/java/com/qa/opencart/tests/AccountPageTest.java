@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.qa.opencart.base.BaseTest;
@@ -13,7 +14,7 @@ public class AccountPageTest extends BaseTest {
 	
 	@BeforeClass
 	public void accSetup() {
-		accPage = loginPage.doLogin("wade.bhushan+101@gmail.com", "Bhushan@123");
+		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 	}
 	
 	@Test
@@ -44,6 +45,26 @@ public class AccountPageTest extends BaseTest {
 	public void accPageSectionHeaderTest() {
 		List<String> actSecHeaderList = accPage.getAccPageSelectionHeaders();
 		Assert.assertEquals(actSecHeaderList, AppConstantsUtil.EXPECTED_ACCOUNT_PAGE_SECTION_HEADERS_LIST);
+	}
+	
+	@DataProvider
+	public Object[][] getProductName() {
+		return new Object[][] {
+			{"Macbook"},
+			{"iMac"},
+			{"Samsung"},
+			
+		
+		};
+	}
+	
+	@Test(dataProvider = "getProductName")
+	public void productSearchTest(String productName) {
+		resultsPage = accPage.performSearch(productName);
+		String actTitle = resultsPage.getSearchPageTitle(productName);
+		System.out.println("Search page Title: "+ actTitle);
+		softAssert.assertEquals(actTitle, AppConstantsUtil.SEARCH_PAGE_TITLE+""+productName);
+		Assert.assertTrue(resultsPage.getSearchProductCount()>0);
 	}
 	
 	

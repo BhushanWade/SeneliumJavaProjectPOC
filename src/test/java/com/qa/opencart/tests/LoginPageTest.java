@@ -30,7 +30,7 @@ public class LoginPageTest extends BaseTest {
 	
 	@Test
 	public void loginTest() {
-		accPage = loginPage.doLogin("wade.bhushan+102@gmail.com", "Bhushan@123");// valid credentials from properties file can be used here
+		accPage = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));// valid credentials from properties file can be used here
 		Assert.assertTrue(accPage.isLogoutExist(),AppErrorsUtil.LOGIN_UNSUCCESSFUL);
 	}
 
