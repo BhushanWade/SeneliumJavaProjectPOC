@@ -8,6 +8,8 @@ import com.qa.opencart.utils.AppConstantsUtil;
 import com.qa.opencart.utils.ElementUtil;
 import com.qa.opencart.utils.TimeUtil;
 
+import io.qameta.allure.Step;
+
 public class LoginPage {
 	
 	private WebDriver driver;	 // creating the reference of WebDriver interface
@@ -29,7 +31,7 @@ public class LoginPage {
 	}
 	
 	//3. page actions/methods
-	
+	@Step("Getting login page title")
 	public String getLoginPageTitle() {
 		return eleUtil.waitForTitleIs(AppConstantsUtil.LOGIN_PAGE_TITLE, TimeUtil.DEFAULT_TIME_OUT);
 	}
@@ -38,6 +40,7 @@ public class LoginPage {
 //		return driver.getTitle();
 //	}
 	
+	@Step("Getting login page URL")
 	public String getLoginPageURL() {
 		return eleUtil.waitForUrlContains(AppConstantsUtil.LOGIN_PAGE_URL_FRACTION, TimeUtil.DEFAULT_TIME_OUT);
 	}
@@ -46,6 +49,7 @@ public class LoginPage {
 		return eleUtil.doIsDisplayed(forgotPwdLink);
 	}
 	
+	@Step("Login with username: {0} and password: {1}")
 	public AccountsPage doLogin(String un, String pwd) { 		// return type is AccountsPage because after login it will navigate to Account page
 		System.out.println("Login with: " + un + " : " + pwd);
 		//eleUtil.waitForElementVisible(emailID, TimeUtil.DEFAULT_TIME_OUT).sendKeys(un);
@@ -65,7 +69,7 @@ public class LoginPage {
 		return new AccountsPage(driver); // after login, it will navigate to Account page Chaining concept
 	}
 	
-	
+	@Step("Navigating to Register page")
 	public RegPage navigateToRegisterPage() {
 		eleUtil.doClick(registerLink);
 		return new RegPage(driver);

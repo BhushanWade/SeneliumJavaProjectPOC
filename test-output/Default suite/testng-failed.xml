@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.opencart.tests.RegPageTest">
+      <class name="com.qa.opencart.tests.Logintest">
         <methods>
-          <include name="registerUserTest" invocation-numbers="0 1 2 3"/>
-          <include name="setup"/>
-          <include name="regPageSteup"/>
-          <include name="tearDown"/>
+          <include name="verifylogin"/>
+          <include name="selectDropDown01"/>
+          <include name="selectDropDown"/>
         </methods>
-      </class> <!-- com.qa.opencart.tests.RegPageTest -->
+      </class> <!-- com.qa.opencart.tests.Logintest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
