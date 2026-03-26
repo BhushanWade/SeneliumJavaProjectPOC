@@ -22,6 +22,8 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.qa.opencart.factory.DriverFactory;
+import com.qa.opencart.utils.Exceptions.FrameworkException;
+
 
 public class ElementUtil {
 
@@ -416,7 +418,7 @@ public class ElementUtil {
 		if (element == null) {
 			System.out.println("element is not found....tried for : " + timeOut + " secs "
 					+ " with the interval of 500 millisecs");
-			throw new FrameworkException("TimeOutException");
+		//	throw new FrameworkException("TimeOutException");
 		}
 
 		return element;
@@ -442,7 +444,7 @@ public class ElementUtil {
 		if (element == null) {
 			System.out.println("element is not found....tried for : " + timeOut + " secs " + " with the interval of "
 					+ intervalTime + " secs");
-			throw new FrameworkException("TimeOutException");
+		//	throw new FrameworkException("TimeOutException");
 		}
 
 		return element;

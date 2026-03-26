@@ -79,14 +79,56 @@ public class DriverFactory {
 
 	public Properties initProp() {
 		prop = new Properties();
-		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
-			prop.load(ip);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
+		FileInputStream ip = null;
+		String envName = System.getProperty("env");
+		System.out.println("Running tests on environment: " + envName);
+		if(envName == null) {
+			System.out.println("No environment is specified, running tests on QA environment");
+			try {
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+				prop.load(ip);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+		else {
+			try {
+				switch (envName.toLowerCase()) {
+				case "qa":
+					ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+					break;
+				case "dev":
+					ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+					break;
+				case "stage":
+					ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+					break;
+				case "uat":
+					ip = new FileInputStream("./src/test/resources/config/uat.config.properties");
+					break;
+				case "prod":
+					ip = new FileInputStream("./src/test/resources/config/config.properties");
+					break;
+				default:
+					System.out.println("Please pass the right environment: " + envName);
+					break;
+				}
+			} 
+			catch (FileNotFoundException e) {
+				e.printStackTrace();
+				}
+			
+			try {
+				prop.load(ip);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		return prop;
 	}
 	

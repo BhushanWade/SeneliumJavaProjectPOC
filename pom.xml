@@ -52,7 +52,7 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>7.11.0</version>
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -169,9 +169,9 @@
 							<suiteXmlFile>
 								src/test/resources/testrunners/testng.xml</suiteXmlFile>
 						</suiteXmlFiles>
-						<argLine>
+					<!--<argLine>
 							-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-						</argLine>
+						</argLine>-->
 					</configuration>
 				</plugin>
 			</plugins>
